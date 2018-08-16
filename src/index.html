@@ -127,38 +127,38 @@
             </div>
         </main>
          <div v-show="loginvisible" class="login">
-            <form class="form">
+            <form class="form" @submit.prevent="onlogin">
                 <h2>登录</h2>
                 <button @click="loginvisible= false">关闭</button>
                 <div class="row">
                     <label>邮箱</label>
-                    <input type="text">
+                    <input type="text" v-model="login.email">
                 </div>
                 <div class="row">
                     <label>密码</label>
-                    <input type="text">
+                    <input type="text" v-model="login.password">
                 </div>
                 <div class="actions">
-                    <button>提交</button>
+                    <button type="submit">提交</button>
                     <a href="#" @click="signupvisible= true;loginvisible= false">注册</a>
                 </div>
             </form>
         </div>
 
         <div v-show="signupvisible" class="signup">
-            <form class="form">
+            <form class="form" @submit.prevent="onsignup">
                 <h2>注册</h2>
                 <button @click="signupvisible= false">关闭</button>
                 <div class="row">
                     <label>邮箱</label>
-                    <input type="text">
+                    <input type="text" v-model="signup.email">
                 </div>
                 <div class="row">
                     <label>密码</label>
-                    <input type="text">
+                    <input type="text" v-model="signup.password">
                 </div>
                 <div class="actions">
-                    <button>提交</button>
+                    <button type="submit">提交</button>
                     <a href="#" @click="signupvisible= false;loginvisible= true">登录</a>
                 </div>
             </form>
