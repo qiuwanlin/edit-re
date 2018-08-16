@@ -1,0 +1,7 @@
+.signup{
+    background: rgb(224, 211, 236);
+    position: fixed;top:25%;left:25%;width:50%;height:50%;
+}
+.signup> .form{
+    background: rgb(141, 231, 231);
+}

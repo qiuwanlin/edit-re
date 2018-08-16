@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/signup.css">
 </head>
 
 <body>
@@ -14,10 +16,18 @@
         <aside>
             <div class="up">
                 <ul class="actions">
-                    <li><button>保存</button></li>
-                    <li><button>分享</button></li>
-                    <li><button>打印</button></li>
-                    <li><button>换肤</button></li>
+                    <li>
+                        <button class="button" @click="clicksave">保存</button>
+                    </li>
+                    <li>
+                        <button>分享</button>
+                    </li>
+                    <li>
+                        <button>打印</button>
+                    </li>
+                    <li>
+                        <button>换肤</button>
+                    </li>
                 </ul>
             </div>
             <div class="down">
@@ -31,13 +41,13 @@
                         <editable-span v-bind:value="resume.name" v-on:edit="onedit('name',$event)"></editable-span>
                     </h1>
                     <p>应聘职位:
-                            <editable-span :value="resume.job" @edit="onedit('job',$event)"></editable-span>
+                        <editable-span :value="resume.job" @edit="onedit('job',$event)"></editable-span>
                     </p>
                     <p class="profile">
-                            <editable-span :value="resume.birthday" @edit="onedit('birthday',$event)"></editable-span>|
-                            <editable-span :value="resume.gender" @edit="onedit('gender',$event)"></editable-span>|
-                            <editable-span :value="resume.email" @edit="onedit('email',$event)"></editable-span>|
-                            <editable-span :value="resume.phone" @edit="onedit('phone',$event)"></editable-span>
+                        <editable-span :value="resume.birthday" @edit="onedit('birthday',$event)"></editable-span>|
+                        <editable-span :value="resume.gender" @edit="onedit('gender',$event)"></editable-span>|
+                        <editable-span :value="resume.email" @edit="onedit('email',$event)"></editable-span>|
+                        <editable-span :value="resume.phone" @edit="onedit('phone',$event)"></editable-span>
                     </p>
                 </section>
                 <section class="skills">
@@ -116,6 +126,43 @@
                 </section>
             </div>
         </main>
+         <div v-show="loginvisible" class="login">
+            <form class="form">
+                <h2>登录</h2>
+                <button @click="loginvisible= false">关闭</button>
+                <div class="row">
+                    <label>邮箱</label>
+                    <input type="text">
+                </div>
+                <div class="row">
+                    <label>密码</label>
+                    <input type="text">
+                </div>
+                <div class="actions">
+                    <button>提交</button>
+                    <a href="#" @click="signupvisible= true;loginvisible= false">注册</a>
+                </div>
+            </form>
+        </div>
+
+        <div v-show="signupvisible" class="signup">
+            <form class="form">
+                <h2>注册</h2>
+                <button @click="signupvisible= false">关闭</button>
+                <div class="row">
+                    <label>邮箱</label>
+                    <input type="text">
+                </div>
+                <div class="row">
+                    <label>密码</label>
+                    <input type="text">
+                </div>
+                <div class="actions">
+                    <button>提交</button>
+                    <a href="#" @click="signupvisible= false;loginvisible= true">登录</a>
+                </div>
+            </form>
+        </div> 
     </div>
 
     <script src="../vendors/av-min.js"></script>

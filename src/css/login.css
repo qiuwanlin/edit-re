@@ -1,0 +1,7 @@
+.login{
+    background: rgb(123, 119, 128);
+    position: fixed;top:25%;left:25%;width:50%;height:50%;
+}
+.login> .form{
+    background: rgb(237, 255, 255);
+}
