@@ -32,7 +32,12 @@ var app = new Vue({
                 if (error.code === 211) {
                     alert('用户不存在')
                 } else if (error.code === 210) { alert('用户名密码不匹配') }
-            });
+            })
+        },
+        onlogout(){
+            AV.User.logOut();
+            alert('已退出当前用户')
+            window.location.reload()
         },
         onsignup() {
             console.log(this.signup)

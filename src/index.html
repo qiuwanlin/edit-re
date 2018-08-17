@@ -31,7 +31,7 @@
                 </ul>
             </div>
             <div class="down">
-                <button>登出</button>
+                <button class="button" @click="onlogout">登出</button>
             </div>
         </aside>
         <main>
@@ -126,10 +126,10 @@
                 </section>
             </div>
         </main>
-         <div v-show="loginvisible" class="login">
+         <div v-show="loginvisible" class="login" v-cloak>
             <form class="form" @submit.prevent="onlogin">
                 <h2>登录</h2>
-                <button @click="loginvisible= false">关闭</button>
+                <button type="button" @click="loginvisible= false">关闭</button>
                 <div class="row">
                     <label>邮箱</label>
                     <input type="text" v-model="login.email">
@@ -145,10 +145,10 @@
             </form>
         </div>
 
-        <div v-show="signupvisible" class="signup">
+        <div v-show="signupvisible" class="signup" v-cloak>
             <form class="form" @submit.prevent="onsignup">
                 <h2>注册</h2>
-                <button @click="signupvisible= false">关闭</button>
+                <button type="button" @click="signupvisible= false">关闭</button>
                 <div class="row">
                     <label>邮箱</label>
                     <input type="text" v-model="signup.email">
