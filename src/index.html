@@ -31,12 +31,13 @@
                 </ul>
             </div>
             <div class="down">
-                <button class="button" @click="onlogout">登出</button>
+                <button class="button" @click="onlogout" v-show="!!currentUser.id">登出</button>
             </div>
         </aside>
         <main>
             <div class="resume">
                 <section class="profile">
+                    {{currentUser}}
                     <h1>
                         <editable-span v-bind:value="resume.name" v-on:edit="onedit('name',$event)"></editable-span>
                     </h1>

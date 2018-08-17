@@ -4,6 +4,10 @@ var app = new Vue({
         loginvisible: false,
         signupvisible: false,
         editingName: false,
+        currentUser:{
+            id:undefined,
+            email:undefined
+        },
         resume: {
             name: 'chil',
             gender: 'girl',
@@ -26,8 +30,9 @@ var app = new Vue({
             this.resume[key] = value
         },
         onlogin() {
-            AV.User.logIn(this.login.email, this.login.password).then(function (loggedInUser) {
-                console.log(loggedInUser);
+            AV.User.logIn(this.login.email, this.login.password).then( (user) =>{
+                this.currentUser.id = user.id
+                this.currentUser.email = user.attributes.email
             }, function (error) {
                 if (error.code === 211) {
                     alert('用户不存在')
@@ -70,3 +75,7 @@ var app = new Vue({
         }
     },
 })
+ let cur = AV.User.current()
+ if(cur){
+     app.currentUser = cur
+ }
