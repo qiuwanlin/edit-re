@@ -4,9 +4,9 @@ var app = new Vue({
         loginvisible: false,
         signupvisible: false,
         editingName: false,
-        currentUser:{
-            id:undefined,
-            email:undefined
+        currentUser: {
+            objectId: undefined,
+            email: undefined
         },
         resume: {
             name: 'chil',
@@ -29,35 +29,44 @@ var app = new Vue({
         onedit(key, value) {
             this.resume[key] = value
         },
+        haslogin() {
+            return !!this.currentUser.objectId
+        },
         onlogin() {
-            AV.User.logIn(this.login.email, this.login.password).then( (user) =>{
-                this.currentUser.id = user.id
-                this.currentUser.email = user.attributes.email
+            AV.User.logIn(this.login.email, this.login.password).then((user) => {
+                alert('登录成功')
+                user = user.toJSON()
+                this.currentUser.objectId = user.objectId
+                this.currentUser.email = user.email
+                this.loginvisible = false
             }, function (error) {
                 if (error.code === 211) {
                     alert('用户不存在')
                 } else if (error.code === 210) { alert('用户名密码不匹配') }
             })
         },
-        onlogout(){
+        onlogout() {
             AV.User.logOut();
             alert('已退出当前用户')
             window.location.reload()
         },
         onsignup() {
-            console.log(this.signup)
             const user = new AV.User();
             user.setUsername(this.signup.email);
             user.setPassword(this.signup.password);
             user.setEmail(this.signup.email);
-            user.signUp().then(function (user) {
-                console.log(user);
-            }, function (error) {
+            user.signUp().then((user) => {
+                alert('注册成功')
+                user = user.toJSON()
+                this.currentUser.objectId = user.objectId
+                this.currentUser.email = user.email
+                this.signupvisible = false
+            }, (error) => {
+                alert(error.rawMessage)
             });
         },
         clicksave() {
-            var currentUser = AV.User.current();
-            console.log(currentUser)
+            let currentUser = AV.User.current();
             if (!currentUser) {
                 this.loginvisible = true
             } else {
@@ -66,16 +75,31 @@ var app = new Vue({
 
         },
         save() {
-            let {id} = AV.User.current()
-            var user = AV.Object.createWithoutData('User', id);
+            let { objectId } = AV.User.current().toJSON()
+            let user = AV.Object.createWithoutData('User', objectId);
             // 修改属性
             user.set('resume', this.resume);
             // 保存到云端
-            user.save();
+            user.save().then(() => {
+                alert('保存成功')
+            }, () => {
+                alert('保存失败')
+            })
+        },
+        get() {
+            var query = new AV.Query('User');
+            query.get(this.currentUser.objectId).then((user)=> {
+                let resume = user.toJSON().resume
+                this.resume = resume
+            }, (error)=> {
+
+            });
         }
     },
 })
- let cur = AV.User.current()
- if(cur){
-     app.currentUser = cur
- }
+let cur = AV.User.current()
+if (cur) {
+    app.currentUser = cur.toJSON()
+    app.get()
+    //console.log(app.currentUser)
+}
