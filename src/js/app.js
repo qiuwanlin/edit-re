@@ -20,6 +20,10 @@ var app = new Vue({
                 {name:'请写技能名称',description:'请描述技能'},
                 {name:'请写技能名称',description:'请描述技能'},
                 {name:'请写技能名称',description:'请描述技能'},
+            ],
+            projects:[
+                {name:'项目名称',link:'http://.',keywords:'关键词',description:'详细描述'},
+                {name:'项目名称',link:'http://.',keywords:'关键词',description:'详细描述'}
             ]
         },
         login: {
@@ -118,6 +122,12 @@ var app = new Vue({
         },
         removeskill(i){
             this.resume.skills.splice(i,1)
+        },
+        addpro(){
+            this.resume.projects.push({name:'项目名称',link:'http://.',keywords:'关键词',description:'详细描述'})
+        },
+        removepro(i){
+            this.resume.projects.splice(i,1)
         }
     },
 })
