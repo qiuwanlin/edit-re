@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/login.css">
     <link rel="stylesheet" href="./css/signup.css">
+    <link rel="stylesheet" href="./css/share.css">
 </head>
 
 <body>
@@ -20,7 +21,7 @@
                         <button class="button" @click="clicksave">保存</button>
                     </li>
                     <li>
-                        <button>分享</button>
+                        <button @click="linkvisible = true">分享</button>
                     </li>
                     <li>
                         <button>打印</button>
@@ -36,7 +37,6 @@
         </aside>
         <main>
             <div class="resume">
-                {{resume}}
                 <section class="profile">
                     <h1>
                         <editable-span v-bind:value="resume.name" v-on:edit="onedit('name',$event)"></editable-span>
@@ -95,6 +95,12 @@
                         </li>
                     </ol>
                 </section>
+            </div>
+            <div>
+                <div v-show="linkvisible" class="share" v-cloak>
+                    <h2>分享链接</h2>
+                    <div><textarea readonly>{{sharelink}}</textarea></div>
+                </div>
             </div>
         </main>
         <div v-show="loginvisible" class="login" v-cloak>

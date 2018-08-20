@@ -4,6 +4,7 @@ var app = new Vue({
         loginvisible: false,
         signupvisible: false,
         editingName: false,
+        linkvisible: false,
         currentUser: {
             objectId: undefined,
             email: undefined
@@ -33,7 +34,8 @@ var app = new Vue({
         signup: {
             email: '',
             password: ''
-        }
+        },
+        sharelink:'000'
     },
     methods: {
         onedit(key, value) {
@@ -134,5 +136,6 @@ var app = new Vue({
 let cur = AV.User.current()
 if (cur) {
     app.currentUser = cur.toJSON()
+    app.sharelink = location.origin + location.pathname + '?user-id' + app.currentUser.objectId
     app.get()
 }
