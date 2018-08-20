@@ -36,8 +36,8 @@
         </aside>
         <main>
             <div class="resume">
+                {{resume}}
                 <section class="profile">
-                    {{currentUser}}
                     <h1>
                         <editable-span v-bind:value="resume.name" v-on:edit="onedit('name',$event)"></editable-span>
                     </h1>
@@ -54,21 +54,15 @@
                 <section class="skills">
                     <h2>技能</h2>
                     <ul>
-                        <li>
-                            <span class="name">页面制作</span>
-                            <div class="description">完美还原设计稿</div>
+                        <li v-for="skill,i in resume.skills">
+                            <editable-span class="name" :value="skill.name" @edit="onedit(`skills[${i}].name`,$event)"></editable-span>
+                            <div class="description">
+                              <editable-span :value="skill.description" @edit="onedit(`skills[${i}].description`,$event)"></editable-span> 
+                            </div>
+                            <span v-if="i>=4" @click="removeskill(i)">X</span>
                         </li>
                         <li>
-                            <span class="name">页面制作</span>
-                            <div class="description">完美还原设计稿</div>
-                        </li>
-                        <li>
-                            <span class="name">页面制作</span>
-                            <div class="description">完美还原设计稿</div>
-                        </li>
-                        <li>
-                            <span class="name">页面制作</span>
-                            <div class="description">完美还原设计稿</div>
+                            <span @click="addskill">ADD</span>
                         </li>
                     </ul>
                 </section>

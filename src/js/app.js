@@ -14,7 +14,13 @@ var app = new Vue({
             birthday: '97.1',
             job: '前端开发',
             phone: '15700000000',
-            email: 'example@e.com'
+            email: 'example@e.com',
+            skills:[
+                {name:'请写技能名称',description:'请描述技能'},
+                {name:'请写技能名称',description:'请描述技能'},
+                {name:'请写技能名称',description:'请描述技能'},
+                {name:'请写技能名称',description:'请描述技能'},
+            ]
         },
         login: {
             email: '',
@@ -27,7 +33,19 @@ var app = new Vue({
     },
     methods: {
         onedit(key, value) {
-            this.resume[key] = value
+        //this.resume[key] = value
+            let regex = /\[(\d+)\]/g
+           key= key.replace(regex,(match,number)=>`.${number}`)
+           keys = key.split('.')
+           let result = this.resume
+           for(let i=0;i<keys.length;i++){
+               if(i===keys.length-1){
+                   result[keys[i]]=value
+               }else{
+                result = result[keys[i]]
+               }
+           }
+           result = value
         },
         haslogin() {
             return !!this.currentUser.objectId
@@ -90,10 +108,16 @@ var app = new Vue({
             var query = new AV.Query('User');
             query.get(this.currentUser.objectId).then((user)=> {
                 let resume = user.toJSON().resume
-                this.resume = resume
+                Object.assign(this.resume,resume)
             }, (error)=> {
 
             });
+        },
+        addskill(){
+            this.resume.skills.push({name:'请写技能名称',description:'请描述技能'})
+        },
+        removeskill(i){
+            this.resume.skills.splice(i,1)
         }
     },
 })
@@ -101,5 +125,4 @@ let cur = AV.User.current()
 if (cur) {
     app.currentUser = cur.toJSON()
     app.get()
-    //console.log(app.currentUser)
 }
