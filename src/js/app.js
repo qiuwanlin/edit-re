@@ -2,7 +2,6 @@ var app = new Vue({
     el: '#app',
     data: {
         skinvisible:false,
-        linkvisible:false,
         loginvisible: false,
         signupvisible: false,
         editingName: false,
@@ -31,14 +30,6 @@ var app = new Vue({
                 {name:'项目名称',link:'http://.',keywords:'关键词',description:'详细描述'}
             ]
         },
-        login: {
-            email: '',
-            password: ''
-        },
-        signup: {
-            email: '',
-            password: ''
-        },
         sharelink:'000',
         mode:'edit',
     },
@@ -50,12 +41,23 @@ var app = new Vue({
     watch:{
         'currentUser.objectId':function(newValue,oldValue){
             if(newValue){
-                this.get(this.currentUser)
+                this.get(this.currentUser).then((resume)=>this.resume = resume)
             }
         }
 
     },
     methods: {
+        onshare(){
+            if(this.haslogin()){
+                this.linkvisible = true
+            }else{alert('请登录')}
+        },
+        login(user){
+            this.currentUser.objectId = user.objectId
+            this.currentUser.email = user.email
+            this.get(this.currentUser)
+            this.loginvisible = false
+        },
         onedit(key, value) {
         //this.resume[key] = value
             let regex = /\[(\d+)\]/g
@@ -74,39 +76,12 @@ var app = new Vue({
         haslogin() {
             return !!this.currentUser.objectId
         },
-        onlogin() {
-            AV.User.logIn(this.login.email, this.login.password).then((user) => {
-                alert('登录成功')
-                user = user.toJSON()
-                this.currentUser.objectId = user.objectId
-                this.currentUser.email = user.email
-                this.loginvisible = false
-            }, function (error) {
-                if (error.code === 211) {
-                    alert('用户不存在')
-                } else if (error.code === 210) { alert('用户名密码不匹配') }
-            })
-        },
         onlogout() {
             AV.User.logOut();
             alert('已退出当前用户')
             window.location.reload()
         },
-        onsignup() {
-            const user = new AV.User();
-            user.setUsername(this.signup.email);
-            user.setPassword(this.signup.password);
-            user.setEmail(this.signup.email);
-            user.signUp().then((user) => {
-                alert('注册成功')
-                user = user.toJSON()
-                this.currentUser.objectId = user.objectId
-                this.currentUser.email = user.email
-                this.signupvisible = false
-            }, (error) => {
-                alert(error.rawMessage)
-            });
-        },
+        
         clicksave() {
             let currentUser = AV.User.current();
             if (!currentUser) {
@@ -151,9 +126,6 @@ var app = new Vue({
         print(){
             window.print()
         },
-        setTheme(name){
-            document.body.className = name
-        }
     },
 })
 
