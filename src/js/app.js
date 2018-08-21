@@ -1,6 +1,7 @@
 var app = new Vue({
     el: '#app',
     data: {
+        skinvisible:false,
         linkvisible:false,
         loginvisible: false,
         signupvisible: false,
@@ -39,7 +40,7 @@ var app = new Vue({
             password: ''
         },
         sharelink:'000',
-        mode: 'edit'
+        mode:'edit',
     },
     computed:{
         displayRe(){
@@ -146,6 +147,12 @@ var app = new Vue({
         },
         removepro(i){
             this.resume.projects.splice(i,1)
+        },
+        print(){
+            window.print()
+        },
+        setTheme(name){
+            document.body.className = name
         }
     },
 })
@@ -166,7 +173,6 @@ let matches = search.match(regex)
 if(matches){
     app.previewUser.objectId = matches[1]
     app.mode = 'preview'
-    console.log('pr' + app.previewUser.objectId);
     app.get(app.previewUser).then(resume =>{
         app.previewResume = resume
     })   

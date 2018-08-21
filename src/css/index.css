@@ -16,17 +16,6 @@ div[v-cloak]{display: none}
 .page>aside .actions>li{margin: 20px}
 .page>main{flex-grow:1;overflow: auto;}
 
-.resume{max-width: 800px;margin:0 auto;}
-.resume>section{margin:50px 0;line-height: 28px;}
-.resume>section>h1,h2{text-align: center;margin: 20px;line-height: 34px;}        
-.resume .profile{text-align: center}
-.resume .skills>ul{display: flex;flex-wrap:wrap;justify-content: space-between;}
-.resume .skills>ul>li{width:48%;border:1px solid grey;margin-top:10px;padding: 10px;}
-.resume .projects >ol>li{margin:30px 0;border: 1px solid grey;padding: 10px;}
-.resume .projects header{display: flex;align-items: center;justify-content: space-between;}
-.resume .projects header .start{display: flex;}
-.resume .projects header .name{margin-right: 1em;}
-
 .editspan{position: relative;}
 .editspan button{display: none;position: absolute;left:100%;top:0;}
 .editspan:hover button{display: inline-block;z-index: 1}
