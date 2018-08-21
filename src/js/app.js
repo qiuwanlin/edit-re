@@ -1,10 +1,13 @@
 var app = new Vue({
     el: '#app',
     data: {
+        linkvisible:false,
         loginvisible: false,
         signupvisible: false,
         editingName: false,
         linkvisible: false,
+        previewUser:{objectId: undefined},
+        previewResume:{},
         currentUser: {
             objectId: undefined,
             email: undefined
@@ -35,7 +38,21 @@ var app = new Vue({
             email: '',
             password: ''
         },
-        sharelink:'000'
+        sharelink:'000',
+        mode: 'edit'
+    },
+    computed:{
+        displayRe(){
+            return this.mode === 'preview' ? this.previewResume : this.resume
+        }
+    },
+    watch:{
+        'currentUser.objectId':function(newValue,oldValue){
+            if(newValue){
+                this.get(this.currentUser)
+            }
+        }
+
     },
     methods: {
         onedit(key, value) {
@@ -110,13 +127,12 @@ var app = new Vue({
                 alert('保存失败')
             })
         },
-        get() {
+        get(user) {
             var query = new AV.Query('User');
-            query.get(this.currentUser.objectId).then((user)=> {
+            return query.get(user.objectId).then((user)=> {
                 let resume = user.toJSON().resume
-                Object.assign(this.resume,resume)
+                return resume
             }, (error)=> {
-
             });
         },
         addskill(){
@@ -133,9 +149,28 @@ var app = new Vue({
         }
     },
 })
+
 let cur = AV.User.current()
 if (cur) {
     app.currentUser = cur.toJSON()
-    app.sharelink = location.origin + location.pathname + '?user-id' + app.currentUser.objectId
-    app.get()
+    app.sharelink = location.origin + location.pathname + '?user_id=' + app.currentUser.objectId
+    console.log('cur'+ app.currentUser.objectId)
+    app.get(app.currentUser).then(resume=>{
+        app.resume = resume
+    })
 }
+
+let search = location.search
+let regex = /user_id=([^&]+)/
+let matches = search.match(regex)
+if(matches){
+    app.previewUser.objectId = matches[1]
+    app.mode = 'preview'
+    console.log('pr' + app.previewUser.objectId);
+    app.get(app.previewUser).then(resume =>{
+        app.previewResume = resume
+    })   
+}
+ //http://127.0.0.1:8080/src/?user_id=5b7963ea756571003be142f7
+
+
