@@ -17,15 +17,16 @@
 
 <body class="white">
     <div class="page" id="app">
-        <app-aside v-if="mode==='edit'"></app-aside>
+        <app-aside v-if="mode==='edit'" :logoutvisible="logoutvisible" @logout="onlogout" @clicksave="clicksave"
+        @clickshare="onshare" @clickprint="print" @changeskin="changeskin"></app-aside>
         <main>
-            <resume :mode="mode" :display-re="displayRe"></resume>
+            <resume :mode="mode" :display-re="displayRe" @onedit="onedit"></resume>
         </main>
 
-        <login v-show="loginvisible" @close="loginvisible=false" @login="login"></login>
+        <login v-show="loginvisible" @close="loginvisible=false" @login="login" ></login>
         <share v-bind:sharelink="sharelink" v-show="linkvisible"></share>
         <skin v-show="skinvisible"></skin>
-        <signup v-show="signupvisible" ></signup>
+        <signup v-show="signupvisible"></signup>
 
     </div>
 

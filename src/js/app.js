@@ -1,6 +1,7 @@
 var app = new Vue({
     el: '#app',
     data: {
+        logoutvisible: true,
         skinvisible: false,
         loginvisible: false,
         signupvisible: false,
@@ -47,6 +48,7 @@ var app = new Vue({
 
     },
     methods: {
+        changeskin() { this.skinvisible = !this.skinvisible },
         onshare() {
             if (this.haslogin()) {
                 this.linkvisible = true
@@ -57,6 +59,7 @@ var app = new Vue({
             this.currentUser.email = user.email
             this.get(this.currentUser)
             this.loginvisible = false
+            this.logoutvisible = true
         },
         onedit(key, value) {
             //this.resume[key] = value
@@ -79,9 +82,9 @@ var app = new Vue({
         onlogout() {
             AV.User.logOut();
             alert('已退出当前用户')
+            this.logoutvisible = false
             window.location.reload()
         },
-
         clicksave() {
             let currentUser = AV.User.current();
             if (!currentUser) {

@@ -14,7 +14,7 @@ Vue.component('app-aside',{
                 <button @click="$emit('clickprint')">打印</button>
             </li>
             <li>
-                <button @click="$emit('clickchangeskin')">换肤</button>
+                <button @click="$emit('changeskin')">换肤</button>
             </li>
         </ul>
     </div>

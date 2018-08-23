@@ -17,6 +17,9 @@ Vue.component('resume',{
         removepro(i){
             this.resume.projects.splice(i,1)
         },
+        onedit(){
+            this.$emit('onedit',)
+        }
     },
     template:`<div class="resume">
     <section class="profile">

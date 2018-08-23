@@ -14,9 +14,9 @@ Vue.component('signup', {
             user.setPassword(this.signup.password);
             user.setEmail(this.signup.email);
             user.signUp().then((user) => {
-                alert('注册成功')
                 user = user.toJSON()
                 this.$emit('signup')
+                alert('注册成功')
                 // this.currentUser.objectId = user.objectId
                 // this.currentUser.email = user.email
                 // this.signupvisible = false
