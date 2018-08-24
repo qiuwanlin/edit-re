@@ -1,7 +1,7 @@
 var app = new Vue({
     el: '#app',
     data: {
-        logoutvisible: true,
+        logoutvisible: false,
         skinvisible: false,
         loginvisible: false,
         signupvisible: false,
@@ -42,7 +42,7 @@ var app = new Vue({
     watch: {
         'currentUser.objectId': function (newValue, oldValue) {
             if (newValue) {
-                this.get(this.currentUser).then((resume) => this.resume = resume)
+                this.get(this.currentUser) //.then((resume) => this.resume = resume)
             }
         }
 
@@ -51,7 +51,7 @@ var app = new Vue({
         changeskin() { this.skinvisible = !this.skinvisible },
         onshare() {
             if (this.haslogin()) {
-                this.linkvisible = true
+                this.linkvisible = !this.linkvisible
             } else { alert('请登录') }
         },
         login(user) {
@@ -60,6 +60,7 @@ var app = new Vue({
             this.get(this.currentUser)
             this.loginvisible = false
             this.logoutvisible = true
+            alert('登录成功')
         },
         onedit(key, value) {
             //this.resume[key] = value
@@ -81,9 +82,17 @@ var app = new Vue({
         },
         onlogout() {
             AV.User.logOut();
-            alert('已退出当前用户')
             this.logoutvisible = false
+            alert('已退出当前用户')
             window.location.reload()
+        },
+        signup(user) {
+            this.currentUser.objectId = user.objectId
+            this.currentUser.email = user.email
+            this.signupvisible = false
+            this.logoutvisible = true
+            alert('注册成功')
+
         },
         clicksave() {
             let currentUser = AV.User.current();
@@ -126,6 +135,7 @@ if (cur) {
     app.currentUser = cur.toJSON()
     app.sharelink = location.origin + location.pathname + '?user_id=' + app.currentUser.objectId
     console.log('cur' + app.currentUser.objectId)
+    app.logoutvisible = true
     app.get(app.currentUser).then(resume => {
         app.resume = resume
     })

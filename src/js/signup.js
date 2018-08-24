@@ -15,8 +15,7 @@ Vue.component('signup', {
             user.setEmail(this.signup.email);
             user.signUp().then((user) => {
                 user = user.toJSON()
-                this.$emit('signup')
-                alert('注册成功')
+                this.$emit('signup',user)
                 // this.currentUser.objectId = user.objectId
                 // this.currentUser.email = user.email
                 // this.signupvisible = false
@@ -32,7 +31,7 @@ Vue.component('signup', {
     <div class="signup" v-cloak>
             <form class="form" @submit.prevent="onsignup">
                 <h2>注册</h2>
-                <button type="button" @click="signupvisible= false">关闭</button>
+                <button type="button"  @click="$emit('close')">关闭</button>
                 <div class="row">
                     <label>邮箱</label>
                     <input type="text" v-model="signup.email">

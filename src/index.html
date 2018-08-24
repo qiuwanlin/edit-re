@@ -18,15 +18,15 @@
 <body class="white">
     <div class="page" id="app">
         <app-aside v-if="mode==='edit'" :logoutvisible="logoutvisible" @logout="onlogout" @clicksave="clicksave"
-        @clickshare="onshare" @clickprint="print" @changeskin="changeskin"></app-aside>
+        @clickshare="onshare" @clickprint="print" @changeskin="changeskin" :logoutvisible="logoutvisible"></app-aside>
         <main>
             <resume :mode="mode" :display-re="displayRe" @onedit="onedit"></resume>
         </main>
 
-        <login v-show="loginvisible" @close="loginvisible=false" @login="login" ></login>
+        <login v-show="loginvisible" @close="loginvisible=false" @login="login" @gotosignup="signupvisible=true;loginvisible=false"></login>
         <share v-bind:sharelink="sharelink" v-show="linkvisible"></share>
         <skin v-show="skinvisible"></skin>
-        <signup v-show="signupvisible"></signup>
+        <signup v-show="signupvisible" @close="signupvisible=false" @signup="signup" @gotologin="signupvisible=false;loginvisible=true"></signup>
 
     </div>
 
@@ -34,6 +34,7 @@
     <script src="../vendors/av-min.js"></script>
     <script src="./js/av.js"></script>
     <script src="../vendors/vue.min.js"></script>
+    <script src="../vendors/vue-router.min.js"></script>
     <script src="./js/editable-span.js"></script>
     
     <script src="./js/login.js"></script>

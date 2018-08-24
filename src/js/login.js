@@ -10,7 +10,6 @@ Vue.component('login', {
     methods: {
         onlogin() {
             AV.User.logIn(this.login.email, this.login.password).then((user) => {
-                alert('登录成功')
                 user = user.toJSON()
                 this.$emit('login',user)
                 // this.currentUser.objectId = user.objectId

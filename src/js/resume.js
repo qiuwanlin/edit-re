@@ -6,19 +6,19 @@ Vue.component('resume',{
     },
     methods:{
         addskill(){
-            this.resume.skills.push({name:'请写技能名称',description:'请描述技能'})
+            this.displayRe.skills.push({name:'请写技能名称',description:'请描述技能'})
         },
         removeskill(i){
-            this.resume.skills.splice(i,1)
+            this.displayRe.skills.splice(i,1)
         },
         addpro(){
-            this.resume.projects.push({name:'项目名称',link:'http://.',keywords:'关键词',description:'详细描述'})
+            this.displayRe.projects.push({name:'项目名称',link:'http://.',keywords:'关键词',description:'详细描述'})
         },
         removepro(i){
-            this.resume.projects.splice(i,1)
+            this.displayRe.projects.splice(i,1)
         },
-        onedit(){
-            this.$emit('onedit',)
+        onedit(k,v){
+            this.$emit('onedit',k,v)
         }
     },
     template:`<div class="resume">
