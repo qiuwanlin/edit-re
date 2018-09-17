@@ -17,5 +17,5 @@ div[v-cloak]{display: none}
 .page>main{flex-grow:1;overflow: auto;}
 
 .editspan{position: relative;}
-.editspan button{display: none;position: absolute;left:100%;top:0;}
-.editspan:hover button{display: inline-block;z-index: 1}
+.editspan svg{display: none;position: absolute;left:100%;top:0;width: 1em; height: 1em;}
+.editspan:hover svg{display: inline-block;z-index: 1;}

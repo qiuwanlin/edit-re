@@ -32,18 +32,18 @@ Vue.component('signup', {
             <form class="form" @submit.prevent="onsignup">
                 <h2>注册</h2>
                 <button type="button"  @click="$emit('close')">关闭</button>
-                <div class="row">
+                 <div class="row">
                     <label>邮箱</label>
                     <input type="text" v-model="signup.email">
-                </div>
-                <div class="row">
+                 </div>
+                 <div class="row">
                     <label>密码</label>
                     <input type="text" v-model="signup.password">
-                </div>
-                <div class="actions">
+                 </div>
+                 <div class="actions">
                     <button type="submit">提交</button>
                     <a href="#" @click="clicklogin">登录</a>
-                </div>
+                 </div>
             </form>
         </div>
     `

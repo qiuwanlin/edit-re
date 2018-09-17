@@ -27,9 +27,9 @@ Vue.component('login', {
     },
     template: `
     <div class="login" v-cloak>
+      <div class="log">
             <form class="form" @submit.prevent="onlogin">
                 <h2>登录</h2>
-                <button type="button" @click="$emit('close')">关闭</button>
                 <div class="row">
                     <label>邮箱</label>
                     <input type="text" v-model="login.email">
@@ -39,10 +39,16 @@ Vue.component('login', {
                     <input type="text" v-model="login.password">
                 </div>
                 <div class="actions">
-                    <button type="submit">提交</button>
+                    <button type="submit">登录</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="#" @click="clicksignup">注册</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <svg class="remove l"  @click="$emit('close')"><use xlink:href="#icon-circle-remove"></use></svg>
                 </div>
+                
+                
             </form>
-        </div>
-        `
+       </div>
+    </div>
+    `
 })

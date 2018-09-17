@@ -61,6 +61,7 @@ var app = new Vue({
             this.loginvisible = false
             this.logoutvisible = true
             alert('登录成功')
+            window.location.reload()
         },
         onedit(key, value) {
             //this.resume[key] = value
