@@ -1,3 +1,4 @@
-.page>aside{
+.page>aside,.adddd,.remove{
     display: none;
 }
+.retext{position: absolute;top:-5px;left:500px;border-radius: 2px;border: 1px solid white;color: white;}

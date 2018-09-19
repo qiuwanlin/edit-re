@@ -44,9 +44,7 @@ Vue.component('login', {
                     <a href="#" @click="clicksignup">注册</a>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <svg class="remove l"  @click="$emit('close')"><use xlink:href="#icon-circle-remove"></use></svg>
-                </div>
-                
-                
+                </div>    
             </form>
        </div>
     </div>

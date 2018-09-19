@@ -1,23 +1,37 @@
 .resume{max-width: 800px;margin:0 auto;}
 .resume>section{margin:50px 0;line-height: 28px;}
 .resume>section>h1,h2{text-align: center;margin: 20px;line-height: 34px;}       
-.resume .profile{margin: 20px 40px 0px 40px}
-.xxx{background: rgb(255, 127, 127);display: flex;justify-content:space-between ;position: relative;}
+.white .resume .profile{padding: 0 40px;margin-top:5px;border-bottom:1px solid rgb(255, 127, 127) }
+.green .resume .profile{padding: 0 40px;margin-top:5px;border-bottom:1px solid rgb(117, 224, 135) }
+.white .reborder{border:20px solid rgb(255, 127, 127);width:100%;margin-top: 10px;position: relative;}
+.green .reborder{border:20px solid rgb(117, 224, 135);width:100%;margin-top: 10px;position: relative;}
+.retext{position: absolute;top:-5px;left:600px;border-radius: 2px;border: 1px solid white;color: white;}
+.xxx{display: flex;justify-content:space-between ;position: relative;}
 .man >h1{font-size: 40px;line-height: 40px;position: absolute;left:30px;top:20px;}
-.man >p{position: absolute;left:50px;top:80px;}
+.man >#p1{position: absolute;left:50px;top:80px;}
+.man >#p2{position: absolute;left:50px;top:110px;}
+
 .xxx>dl{width:280px;margin-top:60px;}
 .xxx >dl>dt{width: 20%;float: left;margin-bottom: 5px;}
 .xxx>dl>dd{width: 80%;float: right;margin-bottom: 5px;}
 
 .resume .skills>ul{display: flex;flex-wrap:wrap;justify-content: space-between;}
-.resume .skills>ul>li{width:48%;border-left:4px solid rgb(255, 127, 127);border-bottom:2px solid rgb(255, 127, 127);margin-top:10px;padding: 10px;}
+.white .resume .skills>ul>li{width:48%;border-left:3px solid rgb(255, 127, 127);
+    border-bottom:2px solid rgb(255, 127, 127);margin-top:10px;padding: 10px;}
+.green .resume .skills>ul>li{width:48%;border-left:3px solid rgb(117, 224, 135);
+    border-bottom:2px solid rgb(117, 224, 135);margin-top:10px;padding: 10px;}
 .ski {display: flex;justify-content:space-between}
-.kuang{width:70%;border-bottom:1px solid rgb(255, 127, 127);margin:10px 0;}
+.white .kuang{width:70%;border-bottom:1px solid rgb(255, 127, 127);margin:10px 0;}
+.green .kuang{width:70%;border-bottom:1px solid rgb(117, 224, 135);margin:10px 0;}
 
-.resume .projects >ol>li{margin:30px 0;padding: 10px; border-left:3px solid rgb(255, 127, 127);}
-.resume .projects header{display: flex;align-items: center;justify-content: space-between;margin-bottom: 15px;
+.white .resume .projects >ol>li{margin:30px 0;padding: 10px; border-left:3px solid rgb(255, 127, 127);}
+.green .resume .projects >ol>li{margin:30px 0;padding: 10px; border-left:3px solid rgb(117, 224, 135);}
+.white .resume .projects header{display: flex;align-items: center;justify-content: space-between;margin-bottom: 15px;
     border-bottom:1px solid rgb(255, 127, 127);}
-.editspan.name{font-size: 20px;color: rgb(102, 47, 47)}
+.green .resume .projects header{display: flex;align-items: center;justify-content: space-between;margin-bottom: 15px;
+    border-bottom:1px solid rgb(117, 224, 135);}
+.editspan.name{font-size: 20px;}
+
 .resume .projects header .start{display: flex;}
 .resume .projects header .name{margin-right: 1em;}
 
@@ -27,6 +41,3 @@
 .remove.l {margin-top:1em;}
 .add{width: 1em; height: 1em;}
 
-.dark{
-    background: black;color: white
-}

@@ -18,6 +18,7 @@ var app = new Vue({
             gender: 'girl',
             birthday: '97.1',
             job: '前端开发',
+            exp: '应届生',
             phone: '15700000000',
             email: 'example@e.com',
             skills: [
@@ -48,7 +49,7 @@ var app = new Vue({
 
     },
     methods: {
-        changeskin() { this.skinvisible = !this.skinvisible },
+        changeskin() { this.skinvisible = !this.skinvisible; },
         onshare() {
             if (this.haslogin()) {
                 this.linkvisible = !this.linkvisible

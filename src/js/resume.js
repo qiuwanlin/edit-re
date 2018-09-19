@@ -23,14 +23,19 @@ Vue.component('resume',{
     },
     template:`
     <div class="resume">
+    <div class="reborder"><div class="retext">personal resume</div></div>
+    
     <section class="profile">
     <div class="xxx">
     <div class="man">
     <h1>
         <editable-span :disabled="mode==='preview'" v-bind:value="displayRe.name" v-on:edit="onedit('name',$event)"></editable-span>
     </h1>
-    <p>应聘职位:
+    <p id="p1">应聘职位:
         <editable-span :disabled="mode==='preview'" :value="displayRe.job" @edit="onedit('job',$event)"></editable-span>
+    </p>
+    <p id="p2">工作经验:
+        <editable-span :disabled="mode==='preview'" :value="displayRe.exp" @edit="onedit('exp',$event)"></editable-span>
     </p>
     </div>
     <dl>
@@ -58,7 +63,7 @@ Vue.component('resume',{
              </div>
              <svg class="remove s" v-if="i>=4 && mode==='edit'" @click="removeskill(i)"><use xlink:href="#icon-circle-remove"></use></svg>
             </li>
-            <li v-if="mode==='edit'">
+            <li v-if="mode==='edit'" class="adddd">
             <svg class="add" @click="addskill"><use xlink:href="#icon-add"></use></svg>
             </li>
         </ul>
@@ -87,7 +92,7 @@ Vue.component('resume',{
                     <svg class="remove p" v-if="i>=2 && mode==='edit'" @click="removepro(i)"><use xlink:href="#icon-circle-remove"></use></svg>
                 </p>
             </li>
-            <li v-if="mode==='edit'">
+            <li v-if="mode==='edit'" class="adddd">
                 <svg class="add" @click="addpro"><use xlink:href="#icon-add"></use></svg>
             </li>
         </ol>

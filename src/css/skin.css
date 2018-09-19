@@ -1,5 +1,18 @@
 .skin{
-    background: rgb(224, 211, 236);
-    position: fixed;top:25%;left:25%;width:50%;
-    padding: 10px 30px 40px 30px
+    background: #fff0e9;
+    position: fixed;top:25%;left:40%;width:20%;
+    padding: 40px 10px;
+    display: flex;justify-content:space-around;
+    box-shadow:0px 0px 5px #333333;
+}
+.pinkskin{
+    width: 30px;height:30px;
+    background: rgb(255, 127, 127);
+}
+.greenskin{
+    width: 30px;height:30px;
+    background: rgb(117, 224, 135);
+}
+.stop{
+    width: 30px;height:30px;
 }

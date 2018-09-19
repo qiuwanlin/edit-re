@@ -19,14 +19,15 @@
 <body class="white">
     <div class="page" id="app">
         <app-aside v-if="mode==='edit'" :logoutvisible="logoutvisible" @logout="onlogout" @clicksave="clicksave"
-        @clickshare="onshare" @clickprint="print" @changeskin="changeskin" :logoutvisible="logoutvisible"></app-aside>
+        @clickshare="onshare" @clickprint="print" @changeskin="changeskin"  
+       ></app-aside>
         <main>
             <resume :mode="mode" :display-re="displayRe" @onedit="onedit"></resume>
         </main>
 
         <login v-show="loginvisible" @close="loginvisible=false" @login="login" @gotosignup="signupvisible=true;loginvisible=false"></login>
         <share v-bind:sharelink="sharelink" v-show="linkvisible"></share>
-        <skin v-show="skinvisible"></skin>
+        <skin v-show="skinvisible"  @stop="skinvisible = false"></skin>
         <signup v-show="signupvisible" @close="signupvisible=false" @signup="signup" @gotologin="signupvisible=false;loginvisible=true"></signup>
 
     </div>

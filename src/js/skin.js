@@ -6,8 +6,9 @@ Vue.component('skin', {
     },
     template: `
     <div  class="skin">
-            <button @click="setTheme('white')">白</button>
-            <button @click="setTheme('dark')">夜</button>
+            <div @click="setTheme('white')" class="pinkskin"></div>
+            <div @click="setTheme('green')" class="greenskin"></div>
+            <svg class="stop"  @click="$emit('stop')" ><use xlink:href="#icon-circle-remove"></use></svg>
     </div>
     `
 })
